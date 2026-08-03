@@ -1,0 +1,86 @@
+[
+  {
+    "model_name": "Random Forest",
+    "accuracy": 0.7715,
+    "precision": 0.5457,
+    "recall": 0.6156,
+    "f1": 0.5785,
+    "roc_auc": 0.8124,
+    "pr_auc": 0.6049,
+    "confusion_matrix": [
+      [
+        866,
+        184
+      ],
+      [
+        138,
+        221
+      ]
+    ],
+    "classification_report": "              precision    recall  f1-score   support\n\n    No Churn       0.86      0.82      0.84      1050\n       Churn       0.55      0.62      0.58       359\n\n    accuracy                           0.77      1409\n   macro avg       0.70      0.72      0.71      1409\nweighted avg       0.78      0.77      0.78      1409\n",
+    "train_time_s": 0.47
+  },
+  {
+    "model_name": "Logistic Regression",
+    "accuracy": 0.7466,
+    "precision": 0.5019,
+    "recall": 0.7354,
+    "f1": 0.5966,
+    "roc_auc": 0.8298,
+    "pr_auc": 0.6245,
+    "confusion_matrix": [
+      [
+        788,
+        262
+      ],
+      [
+        95,
+        264
+      ]
+    ],
+    "classification_report": "              precision    recall  f1-score   support\n\n    No Churn       0.89      0.75      0.82      1050\n       Churn       0.50      0.74      0.60       359\n\n    accuracy                           0.75      1409\n   macro avg       0.70      0.74      0.71      1409\nweighted avg       0.79      0.75      0.76      1409\n",
+    "train_time_s": 0.02
+  },
+  {
+    "model_name": "Decision Tree",
+    "accuracy": 0.7182,
+    "precision": 0.4629,
+    "recall": 0.6602,
+    "f1": 0.5442,
+    "roc_auc": 0.7235,
+    "pr_auc": 0.4322,
+    "confusion_matrix": [
+      [
+        775,
+        275
+      ],
+      [
+        122,
+        237
+      ]
+    ],
+    "classification_report": "              precision    recall  f1-score   support\n\n    No Churn       0.86      0.74      0.80      1050\n       Churn       0.46      0.66      0.54       359\n\n    accuracy                           0.72      1409\n   macro avg       0.66      0.70      0.67      1409\nweighted avg       0.76      0.72      0.73      1409\n",
+    "train_time_s": 0.03
+  },
+  {
+    "model_name": "Naive Bayes",
+    "accuracy": 0.7672,
+    "precision": 0.5387,
+    "recall": 0.6017,
+    "f1": 0.5684,
+    "roc_auc": 0.8093,
+    "pr_auc": 0.5865,
+    "confusion_matrix": [
+      [
+        865,
+        185
+      ],
+      [
+        143,
+        216
+      ]
+    ],
+    "classification_report": "              precision    recall  f1-score   support\n\n    No Churn       0.86      0.82      0.84      1050\n       Churn       0.54      0.60      0.57       359\n\n    accuracy                           0.77      1409\n   macro avg       0.70      0.71      0.70      1409\nweighted avg       0.78      0.77      0.77      1409\n",
+    "train_time_s": 0.0
+  }
+]
