@@ -109,15 +109,18 @@ def load_and_clean(path: str) -> pd.DataFrame:
 
     # --- Fix TotalCharges: blank → 0 for tenure-0 rows, NaN elsewhere → drop ---
     if "TotalCharges" in df.columns:
-        # Replace blank strings with NaN first
-        df["TotalCharges"] = df["TotalCharges"].replace(r"^\s*$", np.nan, regex=True)
+        # Strip whitespace and convert to float; blank strings → NaN
+        # (must convert to numeric FIRST so the .loc[] float assignment below
+        #  doesn't raise TypeError on pandas 2.x with object-dtype columns)
+        df["TotalCharges"] = pd.to_numeric(
+            df["TotalCharges"].astype(str).str.strip(), errors="coerce"
+        )
 
         # For tenure==0 rows, NaN TotalCharges makes sense → impute as 0
         tenure_zero_mask = df["tenure"] == 0
         df.loc[tenure_zero_mask & df["TotalCharges"].isna(), "TotalCharges"] = 0.0
 
-        # Convert to numeric; any remaining non-numeric → NaN → drop
-        df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
+        # Drop any remaining NaN rows (genuine data errors)
         n_before = len(df)
         df = df.dropna(subset=["TotalCharges"])
         n_dropped = n_before - len(df)
@@ -126,6 +129,7 @@ def load_and_clean(path: str) -> pd.DataFrame:
                 f"[preprocessing] Dropped {n_dropped} rows with non-numeric "
                 "TotalCharges (data errors, not tenure-0 blanks)."
             )
+
 
     # --- Deduplicate (safety net — dataset should be unique by customerID) ---
     n_before = len(df)
