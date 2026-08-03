@@ -52,9 +52,57 @@ st.markdown("""
 /* ── Global ───────────────────────────────────────────────────────────── */
 html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
+    color: #e2e8f0;
 }
 .stApp {
     background: linear-gradient(135deg, #0f0c29 0%, #1a1a2e 40%, #16213e 100%);
+}
+
+/* ── Force ALL text light on dark bg ──────────────────────────────────── */
+p, span, div, label, li, td, th, h1, h2, h3, h4, h5, h6 {
+    color: #e2e8f0 !important;
+}
+
+/* Streamlit native text overrides */
+.stMarkdown, .stMarkdown p, .stMarkdown span,
+.stText, .element-container,
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stMarkdownContainer"] span {
+    color: #e2e8f0 !important;
+}
+
+/* Dataframe / table text */
+.stDataFrame td, .stDataFrame th,
+[data-testid="stDataFrame"] td,
+[data-testid="stDataFrame"] th,
+.dataframe td, .dataframe th {
+    color: #e2e8f0 !important;
+    background-color: rgba(255,255,255,0.04) !important;
+}
+
+/* Metric labels and values */
+[data-testid="stMetricValue"],
+[data-testid="stMetricLabel"],
+[data-testid="stMetricDelta"] {
+    color: #e2e8f0 !important;
+}
+
+/* Selectbox, radio, checkbox labels */
+.stSelectbox label, .stRadio label, .stCheckbox label,
+.stSlider label, .stNumberInput label, .stTextInput label {
+    color: #c7d2fe !important;
+    font-weight: 500 !important;
+}
+.stSelectbox div[data-baseweb="select"] span,
+.stSelectbox div[data-baseweb="select"] div {
+    color: #e2e8f0 !important;
+}
+
+/* Caption / help text */
+.stCaption, [data-testid="stCaptionContainer"],
+small, .caption {
+    color: rgba(255, 255, 255, 0.55) !important;
 }
 
 /* ── Sidebar ──────────────────────────────────────────────────────────── */
@@ -62,33 +110,36 @@ section[data-testid="stSidebar"] {
     background: linear-gradient(180deg, #0f0c29 0%, #1a1a2e 100%);
     border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
+section[data-testid="stSidebar"] * {
+    color: #e2e8f0 !important;
+}
 section[data-testid="stSidebar"] .stMarkdown h1,
 section[data-testid="stSidebar"] .stMarkdown h2,
 section[data-testid="stSidebar"] .stMarkdown h3 {
-    color: #e0e0ff !important;
+    color: #c7d2fe !important;
 }
 
 /* ── Glass cards ──────────────────────────────────────────────────────── */
 .glass-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.10);
     border-radius: 16px;
     padding: 24px 28px;
     margin: 12px 0;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .glass-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* ── Metric cards ─────────────────────────────────────────────────────── */
 .metric-card {
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.08));
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.25);
     border-radius: 14px;
     padding: 20px 24px;
     text-align: center;
@@ -108,7 +159,7 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
 }
 .metric-label {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.65) !important;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-top: 6px;
@@ -118,17 +169,17 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
 /* ── Risk badges ──────────────────────────────────────────────────────── */
 .risk-high {
     background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.1));
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    border: 1px solid rgba(239, 68, 68, 0.35);
     border-radius: 12px;
     padding: 16px 20px;
-    color: #fca5a5;
+    color: #fca5a5 !important;
 }
 .risk-low {
     background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(22, 163, 74, 0.1));
-    border: 1px solid rgba(34, 197, 94, 0.3);
+    border: 1px solid rgba(34, 197, 94, 0.35);
     border-radius: 12px;
     padding: 16px 20px;
-    color: #86efac;
+    color: #86efac !important;
 }
 
 /* ── Section headers ──────────────────────────────────────────────────── */
@@ -142,7 +193,7 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
 }
 .section-sub {
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.55) !important;
     margin-bottom: 24px;
 }
 
@@ -153,20 +204,20 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
     border-radius: 0 12px 12px 0;
     padding: 16px 20px;
     margin: 10px 0;
-    color: #e0e0ff;
+    color: #e0e0ff !important;
 }
 .rec-card strong {
-    color: #a5b4fc;
+    color: #a5b4fc !important;
 }
 
 /* ── SHAP feature bar ─────────────────────────────────────────────────── */
-.shap-positive { color: #f87171; font-weight: 600; }
-.shap-negative { color: #4ade80; font-weight: 600; }
+.shap-positive { color: #f87171 !important; font-weight: 600; }
+.shap-negative { color: #4ade80 !important; font-weight: 600; }
 
 /* ── Hero banner ──────────────────────────────────────────────────────── */
 .hero-banner {
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.08));
-    border: 1px solid rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.2);
     border-radius: 20px;
     padding: 36px 40px;
     margin-bottom: 28px;
@@ -182,7 +233,7 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
 }
 .hero-sub {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.6) !important;
     font-weight: 400;
 }
 
@@ -195,18 +246,46 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
 /* ── Tabs styling ─────────────────────────────────────────────────────── */
 .stTabs [data-baseweb="tab-list"] {
     gap: 8px;
+    background: transparent !important;
 }
 .stTabs [data-baseweb="tab"] {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7) !important;
     padding: 10px 20px;
+    font-weight: 500;
 }
 .stTabs [aria-selected="true"] {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.15)) !important;
-    border-color: rgba(139, 92, 246, 0.4) !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(139, 92, 246, 0.18)) !important;
+    border-color: rgba(139, 92, 246, 0.5) !important;
     color: #e0e0ff !important;
+    font-weight: 600 !important;
+}
+
+/* ── Plotly chart backgrounds ─────────────────────────────────────────── */
+.js-plotly-plot .plotly .main-svg {
+    background: transparent !important;
+}
+
+/* ── Dividers ─────────────────────────────────────────────────────────── */
+hr {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── Button overrides ─────────────────────────────────────────────────── */
+.stButton > button {
+    background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(139,92,246,0.2));
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    color: #e0e0ff !important;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.stButton > button:hover {
+    background: linear-gradient(135deg, rgba(99,102,241,0.5), rgba(139,92,246,0.35));
+    border-color: rgba(139, 92, 246, 0.7);
+    transform: translateY(-1px);
 }
 </style>
 """, unsafe_allow_html=True)
